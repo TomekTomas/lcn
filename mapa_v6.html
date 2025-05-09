@@ -40,10 +40,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <style>
+        @media (max-width: 768px){
+          #sidebar       { transform: translateX(-290px); transition:.3s; }
+          #sidebar.open  { transform: translateX(0); }
+          #toggleBtn     { position:fixed; top:80px; left:10px; z-index:10000;
+                           background:#fff; border:1px solid #ccc; padding:8px 10px;
+                           border-radius:4px; box-shadow:0 0 6px rgba(0,0,0,.2); }
+        }
+    </style>
 </head>
 <body>
     
-    <div id='sidebar' style='position:fixed;top:100px;left:10px;width:280px;max-height:80vh;overflow:auto;background:white;border-radius:8px;padding:10px 14px;box-shadow:0 0 15px rgba(0,0,0,.2);z-index:999999;font-size:14px;'>
+    <button id="toggleBtn">☰</button>
+
+    <div id='sidebar' style='position:fixed;top:100px;left:10px;width:250px;max-height:80vh;overflow:auto;background:white;border-radius:8px;padding:10px 14px;box-shadow:0 0 15px rgba(0,0,0,.2);z-index:999999;font-size:14px;'>
   <h4 style='margin:0 0 6px 0;'>Punkty z alkoholem<br><small>wg osiedli</small></h4>
   <table id='osTable' style='width:100%'>
     <thead><tr><th>Osiedle</th><th>Liczba</th></tr></thead>
@@ -73,7 +84,14 @@ $(function(){
 </script>
     
             <div class="folium-map" id="map_f78e7bb8e817506e3208cdd2e4b73453" ></div>
-        
+            <script>
+                document.getElementById('toggleBtn').onclick = function(){
+                  document.getElementById('sidebar').classList.toggle('open');
+                };
+            </script>     
+            <script>
+                map.zoomControl.setPosition('topright');
+            </script>
 </body>
 <script>
     
